@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from './navContainer';
-import ListContainer from './listContainer';
-import ItemContainer from './itemContainer';
+import Lists from '../components/lists';
+import Items from '../components/items';
 import { LOGIN } from '../constants';
 
 class MainContainer extends React.Component{
@@ -9,29 +9,39 @@ class MainContainer extends React.Component{
         super(props);
         this.state = {
             username : 'claire',
-            password : 'password1'
+            password : 'password',
+            list : [],
+            selectedList : {}
         }
 
     }
 
     componentDidMount = () => {
-        console.log('LOGIN IS ',LOGIN)
         fetch(LOGIN,{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state)
         })
         .then(res => res.json())
-        .then(data => console.log('reply is ',data))
-        debugger
+        .then(data => this.setState({
+            list : data.lists
+        }))
+    }
+
+    selectListHandler = (name) => {
+        console.log(name,'was clicked.')
     }
 
     render(){
         return(
             <div>
                 <NavBar />
-                <ListContainer />
-                <ItemContainer />
+                <Lists 
+                    lists = {this.state.list}
+                    clickHandler = {this.selectListHandler}
+
+                />
+                <Items itemLists = {this.state.selectedList}/>
             </div>
         )
     }
