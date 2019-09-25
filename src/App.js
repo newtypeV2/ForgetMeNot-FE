@@ -5,8 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 function App() {
-  const [user, setCount] = useState({});
-  
+  const [user, setUser] = useState({});
+  console.log('User is',user)
   return (
     <div className="App">
       <Switch>
