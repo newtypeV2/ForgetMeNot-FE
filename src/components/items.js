@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 
 export class ItemContainer extends Component {
+
+    renderItems = () => {
+        // console.log(this.props.items)
+        return this.props.items.map(item => <li key={item.name}>{item.name}</li>)
+    }
+
     render() {
         return (
             <div id="itemcontainer">
                 <h3>Items in List</h3>
                 <ol>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                    <li>Item 4</li>
+                    {
+                        this.props.items ? this.renderItems() : null
+                    }
                 </ol>
             </div>
         )

@@ -2,7 +2,6 @@ import React from 'react';
 import NavBar from './navContainer';
 import Lists from '../components/lists';
 import Items from '../components/items';
-import { LOGIN } from '../constants';
 
 class MainContainer extends React.Component{
     constructor(props){
@@ -13,8 +12,11 @@ class MainContainer extends React.Component{
 
     }
 
-    selectListHandler = (name) => {
-        console.log(name,'was clicked.')
+    selectListHandler = (list) => {
+        console.log(list.name,'was clicked.');
+        this.setState({
+            selectedList : list
+        })
     }
 
     render(){
@@ -26,7 +28,7 @@ class MainContainer extends React.Component{
                     clickHandler = {this.selectListHandler}
 
                 />
-                <Items itemLists = {this.state.selectedList}/>
+                <Items items= {this.state.selectedList.items}/>
             </div>
         )
     }
