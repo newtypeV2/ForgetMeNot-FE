@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { LOGIN } from '../constants';
 
 export class Login extends Component {
     constructor(props){
@@ -16,16 +17,33 @@ export class Login extends Component {
     }
 
     onChangeHandler = (key, value) => {
-        // console.log('sTaTe',this.state)
-        // this.setState({
-        //     [key] : value
-        // })
+        this.setState({
+            [key] : value
+        })
+    }
+
+    onSubmitHandler = (e) => {
+        e.preventDefault();
+        fetch(LOGIN,{
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(this.state)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message){
+                alert(data.message)
+            }else{
+                this.props.setUser(data)
+                this.props.history.push('/app')
+            }
+        });
     }
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.onSubmitHandler}>
                     <label>Username: </label>
                     <input type = 'text' name='username' onChange={(e)=>this.onChangeHandler('username',e.currentTarget.value)}/>
                     <label>Password: </label>

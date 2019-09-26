@@ -8,24 +8,9 @@ class MainContainer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username : 'claire',
-            password : 'password',
-            list : [],
             selectedList : {}
         }
 
-    }
-
-    componentDidMount = () => {
-        fetch(LOGIN,{
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(this.state)
-        })
-        .then(res => res.json())
-        .then(data => this.setState({
-            list : data.lists
-        }))
     }
 
     selectListHandler = (name) => {
@@ -37,7 +22,7 @@ class MainContainer extends React.Component{
             <div>
                 <NavBar />
                 <Lists 
-                    lists = {this.state.list}
+                    lists = {this.props.user.lists}
                     clickHandler = {this.selectListHandler}
 
                 />
