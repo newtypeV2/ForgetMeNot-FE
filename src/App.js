@@ -14,6 +14,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
+        <Route exact path = '/'>
+          {user.id ? <Redirect to = '/app' /> : <Redirect to = '/login' /> }
+        </Route>
         <Route exact path = '/login' render = { () =>
           <Login 
             setUser = {setUser}

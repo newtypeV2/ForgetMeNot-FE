@@ -20,6 +20,9 @@ const Lists = (props) => {
                     renderLists()
                 }
             </ul>
+            <form>
+                <input type = 'button'  value = 'Add List' onClick={() => console.log('Clicked')}/>
+            </form>
         </div>
     )
 }
