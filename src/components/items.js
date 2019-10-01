@@ -9,14 +9,17 @@ export class ItemContainer extends Component {
 
     render() {
         return (
+            this.props.items ? 
             <div id="itemcontainer">
                 <h3>Items in List</h3>
                 <ol>
                     {
-                        this.props.items ? this.renderItems() : null
+                        this.renderItems()
                     }
                 </ol>
             </div>
+            :
+            null
         )
     }
 }

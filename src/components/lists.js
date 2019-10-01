@@ -8,6 +8,11 @@ const Lists = (props) => {
         // return [<li>{props.lists[0].name}</li>,<li>{props.lists[1].name}</li>]
     }
 
+    const clickHandler = (e) => {
+        let input = prompt('Please enter list name','');
+        console.log(input)
+    }
+
     return (
         <div id="listcontainer">
 
@@ -21,7 +26,7 @@ const Lists = (props) => {
                 }
             </ul>
             <form>
-                <input type = 'button'  value = 'Add List' onClick={() => console.log('Clicked')}/>
+                <input type = 'button'  value = 'Add List' onClick={clickHandler}/>
             </form>
         </div>
     )
